@@ -9,10 +9,10 @@ Também vou deixar o aqui os videos do youtube que me ajudaram a fazer esta conf
  - [Ambiente perfeito de Docker com VSCode e WSL2](https://www.youtube.com/watch?v=a49gYcBwITc&list=LL&index=112&t=7661s)
  - [O Melhor Setup Dev com Arch e WSL2](https://www.youtube.com/watch?v=sjrW74Hx5Po)
 
-## Indíce
+# Índice
 
 - [Configurando o WSL com o Ubunto 22.04 + ZSH](#configurando-o-wsl-com-o-ubunto-2204--zsh)
-  - [Indíce](#indíce)
+- [Índice](#índice)
 - [Instalando o WSL2](#instalando-o-wsl2)
   - [Para Windows 11](#para-windows-11)
   - [Para Windows 10](#para-windows-10)
@@ -32,7 +32,7 @@ Agora que temos o windows terminal instalado podemos executa-lo em modo **admini
 ```sh
 wsl --install
 ```
-O processo pode ser um processo é um pouco demorado e por padrão no windows 11 a disro Ubuntu é instalada, para especificar qual distro você deseja instalar primeiro precisa listar as disponíveis usando o comando: 
+O processo pode ser um pouco demorado e por padrão no windows 11 a distro Ubuntu é instalada, para especificar qual distro você deseja instalar primeiro precisa listar as disponíveis usando o comando: 
  ```sh
 wsl --list --online
 ```
@@ -54,14 +54,23 @@ OracleLinux_7_9    Oracle Linux 7.9
 Escolhida a distro executamos o comando com o nome igual ao apresentado na lista acima.
 
  ```sh
- wsl --install Ubuntu-22.04 
+ wsl --install -d Ubuntu-22.04 
  ```
-
-
-
 ## Para Windows 10
 
+Aqui as etapas mudam um pouco, inicialmente vamos rodar o seguinte comando para habilitar o WSL, sempre em modo **administrador**  
+
+```sh
+ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+ ```
+Em seguida habilitamos a virtualização
+```sh
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+Em seguida **reiniciamos** o sistema.  
 # Escolhendo uma distro Linux
+
+Caso nenhuma das distro apresentadas seja do seu agrado é possível instalar qualquer distro, mas como o foco aqui é no Ubuntu deixo somente o link para quem quiser se aventurar. [Importar qualquer distribuição do Linux a ser usada com o WSL](https://learn.microsoft.com/pt-br/windows/wsl/use-custom-distro)   
 
 # Usando docker nativo
 
