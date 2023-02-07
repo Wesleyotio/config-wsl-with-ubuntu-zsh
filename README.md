@@ -1,4 +1,4 @@
-# Configurando o WSL com o Ubunto 22.04 + ZSH
+# Configurando o WSL com o Ubuntu 22.04 + ZSH
 
 O WSL é uma excelente alternativa para desenvolvedores que querem possuir todas as vantagens do Windows e ainda manter toda a produtividade que o ambiente Linux pode oferecer.
 
@@ -11,7 +11,7 @@ Também vou deixar o aqui os videos do youtube que me ajudaram a fazer esta conf
 
 # Índice
 
-- [Configurando o WSL com o Ubunto 22.04 + ZSH](#configurando-o-wsl-com-o-ubunto-2204--zsh)
+- [Configurando o WSL com o Ubuntu 22.04 + ZSH](#configurando-o-wsl-com-o-ubuntu-2204--zsh)
 - [Índice](#índice)
 - [Instalando o WSL2](#instalando-o-wsl2)
   - [Para Windows 11](#para-windows-11)
@@ -67,10 +67,25 @@ Em seguida habilitamos a virtualização
 ```sh
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
-Em seguida **reiniciamos** o sistema.  
+Em seguida **reiniciamos** o sistema.
+
+Agora precisamos baixar o [pacote de atualização](https://learn.microsoft.com/pt-br/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package) do kernel do linux e executa-lo. Com a instalação concluída com sucesso vamos tornar a versão do WSL2 como a padrão.
+```sh
+wsl --set-default-version 2
+```
+
 # Escolhendo uma distro Linux
+Abra a [Microsoft store](https://aka.ms/wslstore) e escolha sua distro.
+
+![Image description](config-wsl2-wt-fig2.png)
+
+Selecione a que mais te agradar clique em instalar, nesse caso selecionaremos a 22.04 LTS
+
+![Image description](config-wsl2-wt-fig3.png)
+
 
 Caso nenhuma das distro apresentadas seja do seu agrado é possível instalar qualquer distro, mas como o foco aqui é no Ubuntu deixo somente o link para quem quiser se aventurar. [Importar qualquer distribuição do Linux a ser usada com o WSL](https://learn.microsoft.com/pt-br/windows/wsl/use-custom-distro)   
+
 
 # Usando docker nativo
 
