@@ -16,6 +16,7 @@ Também vou deixar o aqui os videos do youtube que me ajudaram a fazer esta conf
 - [Instalando o WSL2](#instalando-o-wsl2)
   - [Para Windows 11](#para-windows-11)
   - [Para Windows 10](#para-windows-10)
+  - [Configuração de recursos de maquina no WSL](#configuração-de-recursos-de-maquina-no-wsl)
 - [Escolhendo uma distro Linux](#escolhendo-uma-distro-linux)
 - [Usando docker nativo](#usando-docker-nativo)
 - [Habilitando o VScode](#habilitando-o-vscode)
@@ -73,7 +74,20 @@ Agora precisamos baixar o [pacote de atualização](https://learn.microsoft.com/
 ```sh
 wsl --set-default-version 2
 ```
+## Configuração de recursos de maquina no WSL
 
+Em termos de recurso o WSL é um lobo feroz, podendo consumir por padrão os seguintes números.
+ - Quase totalmente o processamento disponível
+ - 80% da memória RAM
+ - 25% do SWAP
+
+Para limitar esse consumo basta criar o arquivo **.wslconfig** em sua pasta raiz do usuário **C:\Users\nameuser** como demostrado a seguir.
+```sh
+[wsl2]
+memory=3GB
+processors=4
+swap=4GB
+```
 # Escolhendo uma distro Linux
 Abra a [Microsoft store](https://aka.ms/wslstore) e escolha sua distro.
 
@@ -83,12 +97,21 @@ Selecione a que mais te agradar clique em instalar, nesse caso selecionaremos a 
 
 ![Image description](config-wsl2-wt-fig3.png)
 
+Terminada a instalação da distro ao inicia-la teremos a seguinte imagem solicitando a criação de um usuário para o sistema. Com isso temos certeza que nosso WSL2 está funcionando plenamente.
 
-Caso nenhuma das distro apresentadas seja do seu agrado é possível instalar qualquer distro, mas como o foco aqui é no Ubuntu deixo somente o link para quem quiser se aventurar. [Importar qualquer distribuição do Linux a ser usada com o WSL](https://learn.microsoft.com/pt-br/windows/wsl/use-custom-distro)   
+![Image description](config-wsl2-wt-fig4.png)
+
+Com sua conta criada com sucesso está será sua visualização, agora oficialmente você é um usuário do Linux no Windows. Parabéns!!!
+
+![Image description](config-wsl2-wt-fig5.png)
+
+
+**PS:** Caso nenhuma das distro apresentadas seja do seu agrado é possível instalar qualquer distro, mas como o foco aqui é no Ubuntu deixo somente o link para quem quiser se aventurar. [Importar qualquer distribuição do Linux a ser usada com o WSL](https://learn.microsoft.com/pt-br/windows/wsl/use-custom-distro)   
 
 
 # Usando docker nativo
-
+Além de reduzir o consumo de recursos drasticamente em relação ao docker desktop temos o controle total dentro do Linux não dependendo de um terceiro. Neste [link](https://docs.docker.com/engine/install/) é explicado como fazer a instalação em outras distros Linux fora o Ubuntu.
+ 
 # Habilitando o VScode
 
 # ZSH e OhMyZsh
