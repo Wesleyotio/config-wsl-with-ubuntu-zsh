@@ -111,7 +111,70 @@ Com sua conta criada com sucesso está será sua visualização, agora oficialme
 
 # Usando docker nativo
 Além de reduzir o consumo de recursos drasticamente em relação ao docker desktop temos o controle total dentro do Linux não dependendo de um terceiro. Neste [link](https://docs.docker.com/engine/install/) é explicado como fazer a instalação em outras distros Linux fora o Ubuntu.
- 
+
+Inicialmente temos que remover todas as versões antigas, mas isso é só mais uma garantia do que uma necessidade uma vez que estamos instalando o sistema
+
+```sh
+sudo apt-get remove docker docker-engine docker.io containerd runc
+```
+
+No meu caso a saída foi essa pois a distro já tinha docker e docker-engine instaladas.
+```sh
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package 'docker.io' is not installed, so not removed
+E: Unable to locate package docker
+E: Unable to locate package docker-engine
+```
+
+Agora faremos a atualização do sistema seguida da ativação dos pacotes com HTTPS.
+```sh
+sudo apt-get update
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+```
+Concluída essa etapa vamos habilitar o docker para uso no Ubuntu
+
+```sh
+sudo mkdir -m 0755 -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+Para configurar o repositório usamos o comando.
+
+```sh
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+Rodamos a atualização mais uma vez.
+```sh
+sudo apt-get update
+```
+Estamos quase lá, só falta realizar a instalação do pacote de fato usando comando. 
+```sh
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+Deu certo! agora vc possui o docker instalado, precisamos habilitar nosso usuário para a ferramenta.
+
+```sh
+sudo usermod -aG docker $USER
+```
+Agora ligamos o docker usando o comando
+```sh
+sudo service docker start
+```
+**OBS:** sempre use o comando acima para iniciar/ligar o docker no wsl.
+
+E testamos usando o comando de hello world do docker
+
+```sh
+sudo docker run hello-world
+```
+
 # Habilitando o VScode
 
 # ZSH e OhMyZsh
