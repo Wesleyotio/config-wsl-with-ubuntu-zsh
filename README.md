@@ -4,10 +4,11 @@ O WSL é uma excelente alternativa para desenvolvedores que querem possuir todas
 
 Esta postagem é uma versão customizada do artigo da [Fullcycle](https://fullcycle.com.br) que está nesse link: [Guia rápido do WSL2 + Docker](https://github.com/codeedu/wsl2-docker-quickstart).
 
-Também vou deixar o aqui os videos do youtube que me ajudaram a fazer esta configuração.
+Também vou deixar o aqui os videos do youtube  e postagens que me ajudaram a fazer esta configuração.
  - [A forma mais produtiva para utilizar Docker no Windows e WSL2](https://www.youtube.com/watch?v=g4HKttouVxA&list=LL&index=113&t=4402s)     
  - [Ambiente perfeito de Docker com VSCode e WSL2](https://www.youtube.com/watch?v=a49gYcBwITc&list=LL&index=112&t=7661s)
  - [O Melhor Setup Dev com Arch e WSL2](https://www.youtube.com/watch?v=sjrW74Hx5Po)
+ - [Instalando e Configurando o ZSH no Ubuntu 20.04](https://medium.com/@gutoinfo.ribeiro/instalando-e-configurando-o-zsh-no-ubuntu-20-04-4ef8a2499ed5)
 
 # Índice
 
@@ -176,6 +177,15 @@ sudo docker run hello-world
 ```
 
 # Habilitando o VScode
+Eu vou admitir que esteja usando o VScode, mas caso esteja usando outra IDE vou deixar o [link](https://github.com/codeedu/wsl2-docker-quickstart#1---instalar-o-docker-com-docker-engine-docker-nativo) do tutorial da fullcycle que explica como fazer isso, show! No VScode basta realizar a instalação do pacote de extensões [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack), feito isso você verá o ícone do pacote no canto inferior esquerdo do VScode, clicando lá essa será a imagem.
+
+![Image description](config-wsl2-wt-fig6.png)
+
+Selecione a segunda opção para selecionar em qual distro instalada no WSL deseja que o VScode seja usada e pronto agora temos a IDE funcionado dentro do Linux via WSL2. E agora no canto inferior esquerdo temos indicando nossa distro instalada como no exemplo da imagem abaixo.
+
+![Image description](config-wsl2-wt-fig7.png)
+
+**OBS:** Para abrir a IDE no WSL basta dar o comando ```code . ``` E na primeira vez que fizer isso ele fara um download e instalação da versão mais recente, também é importante mencionar que algumas de suas extensões terão que ser instaladas novamente.   
 
 # ZSH e OhMyZsh
 
