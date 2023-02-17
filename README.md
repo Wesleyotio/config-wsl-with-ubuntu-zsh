@@ -188,5 +188,51 @@ Selecione a segunda opção para selecionar em qual distro instalada no WSL dese
 **OBS:** Para abrir a IDE no WSL basta dar o comando ```code . ``` E na primeira vez que fizer isso ele fara um download e instalação da versão mais recente, também é importante mencionar que algumas de suas extensões terão que ser instaladas novamente.   
 
 # ZSH e OhMyZsh
+Por padrão temos o **bash** como shell instalado no ubuntu, mas para caso queira listar todos os shells disponíveis basta usar o comando. 
+```sh
+sudo cat /etc/shells
+```
+O resultado é uma saída como essa. 
+```sh
+# /etc/shells: valid login shells
+/bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/bin/dash
+/usr/bin/dash
+/usr/bin/tmux
+/usr/bin/screen
+```
+
+Iniciamos atualizando o sistema
+
+```sh
+sudo apt update
+```
+Feito isso fazemos a instalação do **zsh** pelo comando 
+```sh
+sudo apt install zsh -y
+```
+**OBS:** o “-y” no final do comando é para não ter confirmação antes da instalação.
+
+Para verificar a versão instalada  usamos o comando.
+```sh
+zsh --version
+```
+Antes de definir o zsh como shell padrão temos que saber onde o arquivo binário se encontra usando o comando.
+```sh
+whereis zsh
+```
+Essa é a saída apresentada.
+```sh
+zsh: /usr/bin/zsh /usr/lib/x86_64-linux-gnu/zsh /etc/zsh /usr/share/zsh /usr/share/man/man1/zsh.1.gz
+```
+Pronto agora que temos o caminho basta executar  
+```sh
+sudo usermod -s /usr/bin/zsh $(whoami)
+```
+Feito isso, feche o terminal e abra novamente
 
 # Nerds Fonts
