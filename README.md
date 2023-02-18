@@ -22,7 +22,11 @@ Também vou deixar o aqui os videos do youtube  e postagens que me ajudaram a fa
 - [Usando docker nativo](#usando-docker-nativo)
 - [Habilitando o VScode](#habilitando-o-vscode)
 - [ZSH e OhMyZsh](#zsh-e-ohmyzsh)
-- [Nerds Fonts](#nerds-fonts)
+  - [Nerds Fonts](#nerds-fonts)
+  - [powerlevel10k](#powerlevel10k)
+  - [plugins zsh](#plugins-zsh)
+    - [zsh-autosuggestions](#zsh-autosuggestions)
+    - [zsh-syntax-highlighting](#zsh-syntax-highlighting)
 
 # Instalando o WSL2
 Antes de iniciar a instalação do WSL2 propriamente dita acredito que valha muito a pena instalar antes o [windows terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=pt-br&gl=br) por ser um emulador de terminal melhorar muito nossa produtividade alem de ser altamente customizável. Pode ser encontrado diretamente na Microsoft Store procurando por **windows terminal**, também será mostrado o windows terminal preview que é a versão beta que recebe as atualizações mais recentes.
@@ -233,6 +237,88 @@ Pronto agora que temos o caminho basta executar
 ```sh
 sudo usermod -s /usr/bin/zsh $(whoami)
 ```
-Feito isso, feche o terminal e abra novamente
+Feito isso, feche o terminal e abra novamente e para ter certeza que está usando o ZSH execute.
 
-# Nerds Fonts
+```sh
+echo $SHELL
+```
+Sua saída será o caminho do binário do shell padrão, no nosso caso.
+
+```
+/usr/bin/zsh
+```
+ ## Nerds Fonts
+
+Antes de seguir com nossa configuração precisamos instalar uma fonte do tipo [nerd fonts](https://www.nerdfonts.com) que nada mais são fonts que possuem ícones incorporados, então vamos fazer o download de uma delas.
+
+ - [MesloLGS NF Regular.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf) 
+ - [MesloLGS NF Bold.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf) 
+ - [MesloLGS NF Italic.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf) 
+ - [MesloLGS NF Bold Italic.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf)
+
+Feito isso agora instale as fontes e feche e abra novamente o terminal e em configurações -> padrões -> fonts selecione _MesloLGS NF_. Nas configurações do vscode escreva  ***terminal.integrated.fontFamily*** e selecione a mesma fonte.
+
+O terminal integrado do VScode que roda no WSL não vai reconhecer essa font, pois a IDE está rodando no linux e a font está somente no windows, para corrigir isso vamos fazer assim.
+
+Criamos a pasta onde nossa font vão ficar.
+
+```sh
+ sudo mkdir  /usr/share/fonts/meslolgsnf
+```
+Agora copiamos nossas fonts para este diretório, mas para localizar nossas fonts baixadas no windows a partir do wsl fazemos acesso ao diretório  ***/mnt/c*** que nada mais é do que nosso disco C:/ visto a partir do Linux. Basta agora navegar pelos diretórios até onde fica os arquivos das fonts, no meu caso ficou assim.
+
+```sh
+  cd /mnt/c/Users/<nome_usuario>/Downloads
+```
+Agora copiamos ***cada uma*** das fonts pelo comando 
+
+```sh
+   sudo cp MesloLGS\ NF\ Italic.ttf /usr/share/fonts/meslolgsnf
+```
+Tudo isso foi necessário para agora instalar o [powerlevel10k](https://github.com/romkatv/powerlevel10k) que é um tema para o shell ZSH e deixar nosso terminal mais bonito e performático quando somado aos plugins.
+
+## powerlevel10k
+
+Fazendo uso da instalação manual usamos o comando.
+
+```sh
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+```
+Feche o terminal e abra novamente, assim você inicia a configuração do tema, siga as instruções e customize seu terminal da forma que mais te agrada. Caso queira mudar o estilo apresentado basta usar o comando.
+
+```sh
+  p10k configure
+```
+e fazer o processo novamente.
+## plugins zsh
+
+Bonito o terminal já está, mas precisamos deixar performático, pra isso vamos usar os seguintes plugins:
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - zsh-z
+  
+### zsh-autosuggestions
+Esse plugin é responsável por usar nosso histórico de comandos para sugerir qual proximo comando você deseja usar e autocompleta o comado quando usamos TAB ou seta direita. Para instalar executamos.
+
+```sh
+ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+```
+Agora adicionamos os caminho do plugin em nosso arquivo `/.zshrc
+
+```sh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+```
+Feche e abar novamente o terminal para usar o plugin
+
+### zsh-syntax-highlighting
+Esse plugin é responsável dar realce/cores nos comandos, diretórios e arquivos no sistema no terminal.
+```sh
+sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+```
+Para ativar o plugin em nosso Shell executamos o comando.
+```sh
+ source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+```
+E é isso seu ambiente está totalmente pronto! Boa sorte!
